@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import dscService from '../../../../lib/dsc.js';
+import { validateAddress, formatAddress, createApiResponse, handleApiError } from '../../../../lib/utils.js';
 
 export async function GET(request) {
   try {
