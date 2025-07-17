@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# DSC App Backend
 
-## Getting Started
+A Next.js backend API for interacting with the DSC (Decentralized Stable Coin) smart contract ecosystem, including token operations and DeFi lending protocol functionality.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **RESTful API** for smart contract interactions
+- **Token Operations**: Mint, burn, transfer, approve, balance checking
+- **DeFi Engine**: Deposit collateral, mint/burn DSC, liquidate positions
+- **Read Operations**: Token info, balance, allowance, account status, collateral info
+- **Write Operations**: All token and engine transactions
+- **Input Validation**: Comprehensive address and amount validation
+- **Error Handling**: Standardized error responses with detailed logging
+- **Security**: Private key validation and transaction signing
+- **API Status**: Built-in status endpoint with complete API documentation
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Prerequisites
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- Node.js 18+ 
+- npm or yarn
+- Access to an Ethereum RPC endpoint (local, testnet, or mainnet)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Smart Contract Integration
 
-## Learn More
+The backend integrates with two main smart contracts:
 
-To learn more about Next.js, take a look at the following resources:
+### DSC Token Contract (`0x2c3B2411D8BEeA449f3dfbdAA80bE8C290a159C3`)
+- **ERC20 Token** with mint/burn functionality
+- **Owner-controlled minting** for initial distribution
+- **Standard ERC20 functions**: transfer, approve, allowance, balanceOf
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### DSC Engine Contract (`0x38febeed266b885a6d84f129463330f81f02df86`)
+- **DeFi Lending Protocol** with collateral management
+- **Collateral deposits** and **DSC minting**
+- **Health factor monitoring** and **liquidation system**
+- **Price feed integration** for collateral valuation
