@@ -1,6 +1,7 @@
 import { ethers } from 'ethers';
 import { dscAddress, dscAbi } from './abi/abi_constants.js';
 import DSCEngineService from './dscEngine.js';
+import WETHService from './weth.js';
 import { 
   validateAddress, 
   formatAddress, 
@@ -19,6 +20,7 @@ class DSCService {
     this.contract = null;
     this.signer = null;
     this.dscEngine = null;
+    this.weth = null;
     this.initializeProvider();
   }
 
@@ -31,6 +33,7 @@ class DSCService {
       // Initialize contract instances
       this.contract = new ethers.Contract(dscAddress, dscAbi, this.provider);
       this.dscEngine = new DSCEngineService(this.provider);
+      this.weth = new WETHService(this.provider);
       
       console.log('DSC service initialized successfully');
     } catch (error) {
@@ -49,6 +52,7 @@ class DSCService {
       this.signer = new ethers.Wallet(privateKey, this.provider);
       this.contract = this.contract.connect(this.signer);
       this.dscEngine.setSigner(privateKey);
+      this.weth.setSigner(privateKey);
       
       console.log(`Signer set for address: ${this.signer.address}`);
       return true;
