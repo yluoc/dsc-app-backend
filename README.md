@@ -7,8 +7,10 @@ A Next.js backend API for interacting with the DSC (Decentralized Stable Coin) s
 - **RESTful API** for smart contract interactions
 - **Token Operations**: Mint, burn, transfer, approve, balance checking
 - **DeFi Engine**: Deposit collateral, mint/burn DSC, liquidate positions
+- **wETH Integration**: Seamless ETH wrapping and collateral workflows
 - **Read Operations**: Token info, balance, allowance, account status, collateral info
 - **Write Operations**: All token and engine transactions
+- **Automated Workflows**: One-click ETH → wETH → Collateral → DSC minting
 - **Input Validation**: Comprehensive address and amount validation
 - **Error Handling**: Standardized error responses with detailed logging
 - **Security**: Private key validation and transaction signing
@@ -34,3 +36,24 @@ The backend integrates with two main smart contracts:
 - **Collateral deposits** and **DSC minting**
 - **Health factor monitoring** and **liquidation system**
 - **Price feed integration** for collateral valuation
+
+### wETH Contract (`0xdd13E55209Fd76AfE204dBda4007C227904f0a81`)
+- **Wrapped Ethereum** for Sepolia testnet
+- **1:1 ETH to wETH** conversion ratio
+- **ERC20 standard** with deposit/withdraw functionality
+- **Collateral token** for DSC Engine integration
+
+## wETH Integration Workflows
+
+The backend provides seamless ETH to DSC workflows through wETH integration:
+
+### Traditional Flow (Multi-step)
+1. User wraps ETH to wETH externally
+2. User approves DSC Engine to spend wETH
+3. User deposits wETH as collateral
+4. User mints DSC tokens
+
+### Integrated Flow (One API call)
+```
+Sepolia ETH → wETH Contract → wETH Tokens → DSC Engine → DSC Tokens
+```
