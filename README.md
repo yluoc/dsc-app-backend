@@ -56,4 +56,7 @@ The backend provides seamless ETH to DSC workflows through wETH integration:
 ### Integrated Flow (One API call)
 ```
 Sepolia ETH → wETH Contract → wETH Tokens → DSC Engine → DSC Tokens
-```
+``` 
+
+### Workflow Chart from getting wETH to minting DSC 
+<img src="./public/images/workflows.png" alt="workflow chart" width="600"/>
