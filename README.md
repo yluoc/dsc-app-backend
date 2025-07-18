@@ -57,3 +57,6 @@ The backend provides seamless ETH to DSC workflows through wETH integration:
 ```
 Sepolia ETH → wETH Contract → wETH Tokens → DSC Engine → DSC Tokens
 ```
+
+### Sepolia ETH Free Faucet 
+https://sepolia-faucet.pk910.de/
