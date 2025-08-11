@@ -32,15 +32,14 @@ class WETHService {
 
   // Set signer for transactions (requires private key)
   setSigner(privateKey) {
+    if (!validatePrivateKey(privateKey)) {
+      throw new Error('Invalid private key format');
+    }
     try {
-      if (!validatePrivateKey(privateKey)) {
-        throw new Error('Invalid private key format');
-      }
-      
       this.signer = new ethers.Wallet(privateKey, this.provider);
       this.contract = this.contract.connect(this.signer);
       
-      console.log(`wETH signer set for address: ${this.signer.address}`);
+      // console.log(`wETH signer set for address: ${this.signer.address}`);
       return true;
     } catch (error) {
       console.error('Failed to set wETH signer:', error);
@@ -124,7 +123,15 @@ class WETHService {
   // Write operations (require signer)
   async depositETH(amount) {
     if (!this.signer) {
-      throw new Error('Signer not set. Private key required for depositing ETH.');
+        throw new Error('Signer not set. Call setSigner() with a valid private key.');
+      }
+
+    if (!validateAmount(amount)) {
+        throw new Error('Invalid amount format');
+    }
+
+    if (!validateNonNegativeAmount(amount)) {
+        throw new Error('Amount must be non-negative');
     }
 
     try {
@@ -143,7 +150,15 @@ class WETHService {
 
   async withdrawETH(amount) {
     if (!this.signer) {
-      throw new Error('Signer not set. Private key required for withdrawing ETH.');
+      throw new Error('Signer not set. Call setSigner() with a valid private key.');
+    }
+
+    if (!validateAmount(amount)) {
+        throw new Error('Invalid amount format');
+    }
+
+    if (!validateNonNegativeAmount(amount)) {
+        throw new Error('Amount must be non-negative');
     }
 
     try {
@@ -162,7 +177,19 @@ class WETHService {
 
   async approve(spender, amount) {
     if (!this.signer) {
-      throw new Error('Signer not set. Private key required for approval.');
+        throw new Error('Signer not set. Call setSigner() with a valid private key.');
+    }
+
+    if (!validateAddress(to)) {
+        throw new Error('Invalid recipient address');
+    }
+
+    if (!validateAmount(amount)) {
+        throw new Error('Invalid amount format');
+    }
+
+    if (!validateNonNegativeAmount(amount)) {
+        throw new Error('Amount must be non-negative');
     }
 
     try {
@@ -179,7 +206,19 @@ class WETHService {
 
   async transfer(to, amount) {
     if (!this.signer) {
-      throw new Error('Signer not set. Private key required for transfer.');
+        throw new Error('Signer not set. Call setSigner() with a valid private key.');
+    }
+
+    if (!validateAddress(to)) {
+        throw new Error('Invalid recipient address');
+    }
+
+    if (!validateAmount(amount)) {
+        throw new Error('Invalid amount format');
+    }
+
+    if (!validateNonNegativeAmount(amount)) {
+        throw new Error('Amount must be non-negative');
     }
 
     try {
@@ -197,7 +236,7 @@ class WETHService {
   // Combined operations
   async depositETHAndApprove(ethAmount, spender, approveAmount = null) {
     if (!this.signer) {
-      throw new Error('Signer not set. Private key required for deposit and approve.');
+    	throw new Error('Signer not set. Call setSigner() with a valid private key.');
     }
 
     try {
