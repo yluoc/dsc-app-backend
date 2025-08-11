@@ -265,7 +265,10 @@ class WBTCService {
 
             return {
                 deposit: depositResult,
-                approve: approveResult
+                approve: approveResult,
+                totalBTCDeposited: btcAmount,
+                totalWBTCApproved: amountToApprove,
+                spender: formatAddress(spender)
             };
         } catch (error) {
             console.error('Error in depositBTCAndApprove:', error);
